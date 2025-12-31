@@ -1,0 +1,16 @@
+# NAS Video Sync Configuration
+# Copy this file to sync_nas_video.conf and fill in your values
+# Then source it before running the script: source sync_nas_video.conf && ./sync_nas_video.sh
+
+# NAS connection details
+export NAS_USER="your_username"
+export NAS_PASSWORD="your_password"
+export NAS_HOST="192.168.1.100"
+export NAS_SHARE="videos"
+
+# Mount point (where the NAS will be mounted)
+export MOUNT_POINT="/mnt/nas"
+
+# Video file paths
+export NAS_VIDEO_PATH="/Movies/my_video.mp4"  # Path relative to the NAS share root
+export LOCAL_VIDEO_PATH="/home/user/Videos/my_video.mp4"  # Full path to local file

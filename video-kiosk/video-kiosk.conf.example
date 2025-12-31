@@ -1,0 +1,22 @@
+# Video Kiosk Configuration
+# Copy this to video-kiosk.conf and configure your settings
+
+# Full path to the video file to play
+VIDEO_PATH="/home/user/Videos/video.mp4"
+
+# Display to use (usually :0 for the main display)
+DISPLAY_NUM=":0"
+
+# User to run the service as (usually your login username)
+SERVICE_USER="$USER"
+
+# Startup delay in seconds (to wait for X server)
+STARTUP_DELAY=5
+
+# Additional mpv options (optional)
+# Examples:
+#   --volume=0          # Ensure volume is at 0
+#   --brightness=10     # Adjust brightness
+#   --contrast=5        # Adjust contrast
+#   --start=10          # Start at 10 seconds
+MPV_EXTRA_OPTS=""

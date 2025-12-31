@@ -1,0 +1,27 @@
+[Unit]
+Description=NAS Video Sync Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=%u
+Group=%u
+
+# Set working directory to where the script is located
+WorkingDirectory=/path/to/script/directory
+
+# Source the configuration file and run the script
+ExecStart=/bin/bash -c 'source /path/to/script/directory/sync_nas_video.conf && /path/to/script/directory/sync_nas_video.sh'
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=nas-video-sync
+
+# Security hardening (optional)
+PrivateTmp=yes
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
