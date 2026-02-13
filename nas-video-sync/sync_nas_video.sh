@@ -14,6 +14,7 @@ NAS_SHARE="${NAS_SHARE:-videos}"
 MOUNT_POINT="${MOUNT_POINT:-/mnt/nas}"
 NAS_VIDEO_PATH="${NAS_VIDEO_PATH:-/path/to/video.mp4}"  # Path relative to NAS share
 LOCAL_VIDEO_PATH="${LOCAL_VIDEO_PATH:-/path/to/local/video.mp4}"
+SMB_VERSION="${SMB_VERSION:-3.0}"  # SMB protocol version (2.0, 2.1, 3.0)
 
 # Colors for output
 RED='\033[0;31m'
@@ -54,7 +55,7 @@ mount_nas() {
 
     # Mount the NAS share
     sudo mount -t cifs "//$NAS_HOST/$NAS_SHARE" "$MOUNT_POINT" \
-        -o username="$NAS_USER",password="$NAS_PASSWORD",uid=$(id -u),gid=$(id -g)
+        -o username="$NAS_USER",password="$NAS_PASSWORD",vers="$SMB_VERSION",uid=$(id -u),gid=$(id -g)
 
     if [ $? -eq 0 ]; then
         log_info "NAS mounted successfully at $MOUNT_POINT"
