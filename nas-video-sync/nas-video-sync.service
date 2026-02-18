@@ -21,7 +21,6 @@ SyslogIdentifier=nas-video-sync
 
 # Security hardening (optional)
 PrivateTmp=yes
-NoNewPrivileges=true
 
 [Install]
 WantedBy=multi-user.target

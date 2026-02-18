@@ -50,11 +50,11 @@ mount_nas() {
     # Create mount point if it doesn't exist
     if [ ! -d "$MOUNT_POINT" ]; then
         log_info "Creating mount point: $MOUNT_POINT"
-        sudo mkdir -p "$MOUNT_POINT"
+        mkdir -p "$MOUNT_POINT"
     fi
 
     # Mount the NAS share
-    sudo mount -t cifs "//$NAS_HOST/$NAS_SHARE" "$MOUNT_POINT" \
+    mount -t cifs "//$NAS_HOST/$NAS_SHARE" "$MOUNT_POINT" \
         -o username="$NAS_USER",password="$NAS_PASSWORD",vers="$SMB_VERSION",uid=$(id -u),gid=$(id -g)
 
     if [ $? -eq 0 ]; then
@@ -70,7 +70,7 @@ mount_nas() {
 unmount_nas() {
     if check_mount; then
         log_info "Unmounting NAS..."
-        sudo umount "$MOUNT_POINT"
+        umount "$MOUNT_POINT"
     fi
 }
 
@@ -170,7 +170,7 @@ main() {
 
             # Restart video kiosk to pick up the new file
             log_info "Restarting video-kiosk service..."
-            if sudo systemctl restart video-kiosk 2>/dev/null; then
+            if systemctl restart video-kiosk 2>/dev/null; then
                 log_info "video-kiosk service restarted successfully"
             else
                 log_warn "Could not restart video-kiosk service (may not be installed)"
