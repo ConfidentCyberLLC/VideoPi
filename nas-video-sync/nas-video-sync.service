@@ -5,14 +5,12 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-User=%u
-Group=%u
 
 # Set working directory to where the script is located
-WorkingDirectory=/path/to/script/directory
+WorkingDirectory=/opt/KCPAVid/VideoPi/nas-video-sync
 
 # Source the configuration file and run the script
-ExecStart=/bin/bash -c 'source /path/to/script/directory/sync_nas_video.conf && /path/to/script/directory/sync_nas_video.sh'
+ExecStart=/bin/bash -c 'source /opt/KCPAVid/VideoPi/nas-video-sync/sync_nas_video.conf && /opt/KCPAVid/VideoPi/nas-video-sync/sync_nas_video.sh'
 
 # Logging
 StandardOutput=journal
