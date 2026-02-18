@@ -167,6 +167,14 @@ main() {
             cp "$nas_file" "$LOCAL_VIDEO_PATH"
 
             log_info "Sync complete! Old file backed up as: $(basename "$backup_path")"
+
+            # Restart video kiosk to pick up the new file
+            log_info "Restarting video-kiosk service..."
+            if sudo systemctl restart video-kiosk 2>/dev/null; then
+                log_info "video-kiosk service restarted successfully"
+            else
+                log_warn "Could not restart video-kiosk service (may not be installed)"
+            fi
         fi
     else
         # Local file doesn't exist, just copy
@@ -178,6 +186,14 @@ main() {
 
         cp "$nas_file" "$LOCAL_VIDEO_PATH"
         log_info "File copied successfully!"
+
+        # Restart video kiosk to pick up the new file
+        log_info "Restarting video-kiosk service..."
+        if sudo systemctl restart video-kiosk 2>/dev/null; then
+            log_info "video-kiosk service restarted successfully"
+        else
+            log_warn "Could not restart video-kiosk service (may not be installed)"
+        fi
     fi
 
     # Unmount if we mounted it
